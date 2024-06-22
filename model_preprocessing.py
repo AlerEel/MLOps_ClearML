@@ -78,28 +78,12 @@ print("number of input words : ", num_in_words)
 print("number of target words : ", num_tr_words)
 print("maximum input length : ", max_in_len)
 print("maximum target length : ", max_tr_len)
+# сохраняем в файл "prep_train_1.csv"
+df = pd.DataFrame(np.column_stack([input_texts, target_texts]),
+                               columns=['input_texts', 'target_texts'])
+df.to_csv('train/prep_train_1.csv',index=False)
 
-#split the input and target text into 80:20 ratio or testing size of 20%.
-x_train,x_test,y_train,y_test=train_test_split(input_texts,target_texts,test_size=0.2,random_state=0)
-
-# train the tokenizer with all the words
-in_tokenizer = Tokenizer()
-in_tokenizer.fit_on_texts(x_train)
-tr_tokenizer = Tokenizer()
-tr_tokenizer.fit_on_texts(y_train)
-
-# convert text into sequence of integers
-# where the integer will be the index of that word
-x_train = in_tokenizer.texts_to_sequences(x_train)
-y_train = tr_tokenizer.texts_to_sequences(y_train)
-
-df_1 = pd.DataFrame({'x_train': x_train, 'y_train': y_train})
-df_2 = pd.DataFrame({'x_test': x_test, 'y_test': y_test})
-
-df_1.to_csv('train/prep_train_1.csv',index=False)
-df_2.to_csv('train/prep_test_1.csv',index=False)
-
-#фиксируем время окончания работы кода
+# фиксируем время окончания работы кода
 finish = datetime.datetime.now()
 # вычитаем время старта из времени окончания
 print('Время работы: ' + str(finish - start))
