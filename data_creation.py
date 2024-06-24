@@ -20,12 +20,12 @@ nltk.download('stopwords')
 nltk.download('punkt')
 
 #create the dataset1 file
-df=pd.read_csv("Reviews.csv",nrows=200000)
+df=pd.read_csv("Reviews.csv",nrows=20000)
 df.drop_duplicates(subset=['Text'],inplace=True)
 df.dropna(axis=0,inplace=True)
 df = df.loc[:,['Summary', 'Text']]
-df_1 = df.iloc[:100000,:]
-df_2 = df.iloc[100000:,:]
+df_1 = df.iloc[:10000,:]
+df_2 = df.iloc[10000:,:]
 
 df_1.to_csv('train/train_1.csv',index=False)
 df_2.to_csv('train/train_2.csv',index=False)
