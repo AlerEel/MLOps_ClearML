@@ -178,7 +178,7 @@ pip install -r requirements.txt
 
 1. Запустите основной скрипт:
 ```bash
-python run_pipeline.py
+python src/run_pipeline.py
 ```
 
 Скрипт выполнит следующие действия:
